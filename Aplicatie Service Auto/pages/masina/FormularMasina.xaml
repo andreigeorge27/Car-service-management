@@ -1,0 +1,49 @@
+﻿<Page x:Class="Aplicatie_Service_Auto.FormularMasina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Aplicatie_Service_Auto"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Formular masina">
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Column="0">
+            <Label Margin="0" Padding="0">Client</Label>
+            <ComboBox x:Name="cbClient" Margin="0,5,0,10" Padding="5" SelectedValuePath="id_client" DisplayMemberPath="nume" SelectedIndex="0" />
+
+            <Label Margin="0" Padding="0">Serie șasiu</Label>
+            <TextBox x:Name="tbSerieSasiu" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Număr înmatriculare</Label>
+            <TextBox x:Name="tbNrInmatriculare" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Marcă</Label>
+            <ComboBox x:Name="cbMarca" Margin="0,5,0,10" Padding="5" SelectedValuePath="id_marca" DisplayMemberPath="denumire" SelectedIndex="0" SelectionChanged="cbMarca_SelectionChanged" />
+            
+            <Label Margin="0" Padding="0">Model</Label>
+            <ComboBox x:Name="cbModel" Margin="0,5,0,10" Padding="5" SelectedValuePath="id_model" DisplayMemberPath="denumire" SelectedIndex="0" />
+            
+            <Label Margin="0" Padding="0">Rulaj</Label>
+            <TextBox x:Name="tbRulaj" Margin="0,5,0,10" Padding="2,5"/>
+            
+            <Label Margin="0" Padding="0">An fabricație</Label>
+            <TextBox x:Name="tbAnFabricatie" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Motorizare</Label>
+            <TextBox x:Name="tbMotorizare" Margin="0,5,0,10" Padding="2,5"/>
+            
+            <Button x:Name="btnAdaugareMasina" Content="Adaugă" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnAdaugareMasina_Click"/>
+            <Button x:Name="btnModificareMasina" Content="Actualizează" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnModificareMasina_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
+

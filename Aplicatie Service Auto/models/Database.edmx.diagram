@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bcbd9fd640504c5392418b9871aedc5d" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="AplicatieServiceAutoModel.Angajat" Width="1.5" PointX="1.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicatieServiceAutoModel.Client" Width="1.5" PointX="10.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicatieServiceAutoModel.Interventie" Width="1.5" PointX="5.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicatieServiceAutoModel.Interventie_Serviciu" Width="1.5" PointX="3.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicatieServiceAutoModel.Marca" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicatieServiceAutoModel.Masina" Width="1.5" PointX="8" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicatieServiceAutoModel.Model" Width="1.5" PointX="8" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicatieServiceAutoModel.Serviciu" Width="1.5" PointX="5.75" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Interventie_Serviciu_ToAngajat" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Interventie_ToClient" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Masina_ToClient" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Interventie_Serviciu_ToInterventie" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Interventie_ToMasina" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Interventie_Serviciu_ToServiciu" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Masina_ToMarca" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Model_ToMarca" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicatieServiceAutoModel.FK_Masina_ToModel" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

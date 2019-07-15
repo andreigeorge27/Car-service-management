@@ -1,0 +1,31 @@
+﻿<Page x:Class="Aplicatie_Service_Auto.FormularModel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Aplicatie_Service_Auto"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Formular model">
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Column="0">
+            <Label Margin="0" Padding="0">Denumire</Label>
+            <TextBox x:Name="tbDenumire" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Marcă</Label>
+            <ComboBox x:Name="cbMarca" Margin="0,5,0,10" Padding="5" SelectedValuePath="id_marca" DisplayMemberPath="denumire" SelectedIndex="0" />
+
+            <Button x:Name="btnAdaugareModel" Content="Adaugă" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnAdaugareModel_Click"/>
+            <Button x:Name="btnModificareModel" Content="Actualizează" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnModificareModel_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
+

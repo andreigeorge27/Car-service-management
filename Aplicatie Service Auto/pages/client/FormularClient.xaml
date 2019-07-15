@@ -1,0 +1,49 @@
+﻿<Page x:Class="Aplicatie_Service_Auto.FormularClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Aplicatie_Service_Auto"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Formular client">
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Column="0">
+            <Label Margin="0" Padding="0">Nume</Label>
+            <TextBox x:Name="tbNume" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">CNP</Label>
+            <TextBox x:Name="tbCNP" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Serie CI</Label>
+            <TextBox x:Name="tbSerieCI" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Număr CI</Label>
+            <TextBox x:Name="tbNumarCI" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Data nașterii</Label>
+            <DatePicker x:Name="dpDataNasterii" HorizontalAlignment="Left" Margin="0,5,0,10" Padding="2,5" VerticalAlignment="Top"/>
+
+            <Label Margin="0" Padding="0">Adresa</Label>
+            <TextBox x:Name="tbAdresa" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Telefon</Label>
+            <TextBox x:Name="tbTelefon" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Label Margin="0" Padding="0">Email</Label>
+            <TextBox x:Name="tbEmail" Margin="0,5,0,10" Padding="2,5"/>
+
+            <Button x:Name="btnAdaugareClient" Content="Adaugă" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnAdaugareClient_Click"/>
+            <Button x:Name="btnModificareClient" Content="Actualizează" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnModificareClient_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
+

@@ -1,0 +1,80 @@
+﻿<Page x:Class="Aplicatie_Service_Auto.FormularInterventie"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Aplicatie_Service_Auto"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Formular interventie">
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="leftSide" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0">
+            <Label Margin="0" Padding="0">Client</Label>
+            <ComboBox x:Name="cbClient" Margin="0,5,0,10" Padding="5" SelectedValuePath="id_client" DisplayMemberPath="nume" SelectedIndex="0" SelectionChanged="cbClient_SelectionChanged" />
+
+            <Label Margin="0" Padding="0">Mașină</Label>
+            <ComboBox x:Name="cbMasina" Margin="0,5,0,10" Padding="5" SelectedValuePath="id_masina" DisplayMemberPath="nr_inmatriculare" SelectedIndex="0" />
+
+            <Label Margin="0" Padding="0">Data primire</Label>
+            <DatePicker x:Name="dpDataPrimire" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" Margin="0,5,0,10" Padding="2,5" VerticalAlignment="Top"/>
+
+            <Label Margin="0" Padding="0">Data finalizare</Label>
+            <DatePicker x:Name="dpDataFinalizare" HorizontalAlignment="Left" Margin="0,5,0,10" Padding="2,5" VerticalAlignment="Top"/>
+
+            <Label Margin="0" Padding="0">Status</Label>
+            <ComboBox x:Name="cbStatus" Margin="0,5,0,10" Padding="5" SelectedIndex="0" SelectedValuePath="Tag">
+                <ComboBoxItem Tag="0">În așteptare...</ComboBoxItem>
+                <ComboBoxItem Tag="1">Finalizat</ComboBoxItem>
+                <ComboBoxItem Tag="2">Anulat</ComboBoxItem>
+                <ComboBoxItem Tag="3">Schiță</ComboBoxItem>
+            </ComboBox>
+
+            <Button x:Name="btnAdaugareInterventie" Content="Adaugă" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnAdaugareInterventie_Click"/>
+            <Button x:Name="btnModificareInterventie" Content="Actualizează" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnModificareInterventie_Click"/>
+        </StackPanel>
+
+        <StackPanel x:Name="rightSide" Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0">
+            <Label Margin="0" Padding="0">Listă servicii</Label>
+            <ListView x:Name="lvServicii" Margin="0,5,0,0" Height="200" ItemsSource="{Binding ServiciiList}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Serviciu" DisplayMemberBinding="{Binding Serviciu.denumire}"/>
+                            <GridViewColumn Header="Angajat" DisplayMemberBinding="{Binding Angajat.nume}"/>
+                            <GridViewColumn Width="50" Header="Preț" DisplayMemberBinding="{Binding pret}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel x:Name="adaugareServiciu" Orientation="Vertical" Margin="0,5,0,0">
+                <Label Margin="0" Padding="0">Serviciu</Label>
+                <ComboBox x:Name="cbServiciu" Margin="0,5,0,10" Padding="5" SelectedValuePath="id_serviciu" DisplayMemberPath="denumire" SelectedIndex="0" />
+
+                <Label Margin="0" Padding="0">Angajat</Label>
+                <ComboBox x:Name="cbAngajat" Margin="0,5,0,10" Padding="5" SelectedValuePath="id_angajat" DisplayMemberPath="nume" SelectedIndex="0" />
+                
+                <Label Margin="0" Padding="0">Preț</Label>
+                <TextBox x:Name="tbPret" Margin="0,5,0,10" Padding="2,5"/>
+
+                <StackPanel x:Name="butoaneServicii" Orientation="Horizontal">
+                    <Button x:Name="btnAdaugareServiciu" Content="Adaugă" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnAdaugareServiciu_Click"/>
+                    <!--
+                    <Button x:Name="btnModificareServiciu" Content="Modifică" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnModificareServiciu_Click"/>
+                    <Button x:Name="btnStergereServiciu" Content="Șterge" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,0" Padding="10,3" Click="btnStergereServiciu_Click"/>
+                    -->
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
+

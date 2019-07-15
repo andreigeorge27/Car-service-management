@@ -1,0 +1,31 @@
+﻿<Page x:Class="Aplicatie_Service_Auto.ListaInterventii"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Aplicatie_Service_Auto"
+      mc:Ignorable="d"
+      Title="Listă intervenții">
+    <Grid>
+        <ListView x:Name="lvInterventii" Margin="0,35,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding id_interventie}"/>
+                        <GridViewColumn Header="Client" DisplayMemberBinding="{Binding Client.nume}"/>
+                        <GridViewColumn Header="Mașină" DisplayMemberBinding="{Binding Masina.nr_inmatriculare}"/>
+                        <GridViewColumn Header="Data primire" DisplayMemberBinding="{Binding data_primire, StringFormat=dd/MM/yyyy}"/>
+                        <GridViewColumn Header="Data finalizare" DisplayMemberBinding="{Binding data_finalizare, StringFormat=dd/MM/yyyy}"/>
+                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding status}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal" Margin="0">
+            <Button x:Name="btnAdaugareInterventie" Content="Adaugă intervenție" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Padding="10,3" Click="btnAdaugareInterventie_Click"/>
+            <Button x:Name="btnModifica" Margin="0,0,10,0" Padding="10,3" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Modifică" Click="btnModifica_Click"/>
+            <Button x:Name="btnFactura" Margin="0,0,10,0" Padding="10,3" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Generează factură" Click="btnFactura_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

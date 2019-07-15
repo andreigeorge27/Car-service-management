@@ -1,0 +1,643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AplicatieServiceAutoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Angajat">
+          <Key>
+            <PropertyRef Name="id_angajat" />
+          </Key>
+          <Property Name="id_angajat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nume" Type="nvarchar" MaxLength="50" />
+          <Property Name="CNP" Type="nvarchar" MaxLength="13" />
+          <Property Name="serieCI" Type="nvarchar" MaxLength="2" />
+          <Property Name="numarCI" Type="int" />
+          <Property Name="data_nasterii" Type="datetime" />
+          <Property Name="data_angajare" Type="datetime" />
+          <Property Name="adresa" Type="nvarchar" MaxLength="150" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="20" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="salariu" Type="float" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id_client" />
+          </Key>
+          <Property Name="id_client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nume" Type="nvarchar" MaxLength="50" />
+          <Property Name="CNP" Type="nvarchar" MaxLength="13" />
+          <Property Name="serieCI" Type="nvarchar" MaxLength="2" />
+          <Property Name="numarCI" Type="int" />
+          <Property Name="data_nasterii" Type="datetime" />
+          <Property Name="adresa" Type="nvarchar" MaxLength="150" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="20" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Interventie">
+          <Key>
+            <PropertyRef Name="id_interventie" />
+          </Key>
+          <Property Name="id_interventie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_client" Type="int" />
+          <Property Name="id_masina" Type="int" />
+          <Property Name="data_primire" Type="datetime" />
+          <Property Name="data_finalizare" Type="datetime" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="Interventie_Serviciu">
+          <Key>
+            <PropertyRef Name="id_int_serv" />
+          </Key>
+          <Property Name="id_int_serv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_interventie" Type="int" />
+          <Property Name="id_serviciu" Type="int" />
+          <Property Name="id_angajat" Type="int" />
+          <Property Name="pret" Type="float" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="id_marca" />
+          </Key>
+          <Property Name="id_marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denumire" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Masina">
+          <Key>
+            <PropertyRef Name="id_masina" />
+          </Key>
+          <Property Name="id_masina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_client" Type="int" />
+          <Property Name="serie_sasiu" Type="nvarchar" MaxLength="30" />
+          <Property Name="nr_inmatriculare" Type="nvarchar" MaxLength="20" />
+          <Property Name="id_marca" Type="int" />
+          <Property Name="id_model" Type="int" />
+          <Property Name="rulaj" Type="int" />
+          <Property Name="an_fabricatie" Type="int" />
+          <Property Name="motorizare" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="id_model" />
+          </Key>
+          <Property Name="id_model" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denumire" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_marca" Type="int" />
+        </EntityType>
+        <EntityType Name="Serviciu">
+          <Key>
+            <PropertyRef Name="id_serviciu" />
+          </Key>
+          <Property Name="id_serviciu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denumire" Type="nvarchar" MaxLength="50" />
+          <Property Name="descriere" Type="nvarchar" MaxLength="255" />
+          <Property Name="durata_medie" Type="float" />
+        </EntityType>
+        <Association Name="FK_Interventie_Serviciu_ToAngajat">
+          <End Role="Angajat" Type="Self.Angajat" Multiplicity="0..1" />
+          <End Role="Interventie_Serviciu" Type="Self.Interventie_Serviciu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Angajat">
+              <PropertyRef Name="id_angajat" />
+            </Principal>
+            <Dependent Role="Interventie_Serviciu">
+              <PropertyRef Name="id_angajat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interventie_Serviciu_ToInterventie">
+          <End Role="Interventie" Type="Self.Interventie" Multiplicity="0..1" />
+          <End Role="Interventie_Serviciu" Type="Self.Interventie_Serviciu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Interventie">
+              <PropertyRef Name="id_interventie" />
+            </Principal>
+            <Dependent Role="Interventie_Serviciu">
+              <PropertyRef Name="id_interventie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interventie_Serviciu_ToServiciu">
+          <End Role="Serviciu" Type="Self.Serviciu" Multiplicity="0..1" />
+          <End Role="Interventie_Serviciu" Type="Self.Interventie_Serviciu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Serviciu">
+              <PropertyRef Name="id_serviciu" />
+            </Principal>
+            <Dependent Role="Interventie_Serviciu">
+              <PropertyRef Name="id_serviciu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interventie_ToClient">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Interventie" Type="Self.Interventie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_client" />
+            </Principal>
+            <Dependent Role="Interventie">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interventie_ToMasina">
+          <End Role="Masina" Type="Self.Masina" Multiplicity="0..1" />
+          <End Role="Interventie" Type="Self.Interventie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masina">
+              <PropertyRef Name="id_masina" />
+            </Principal>
+            <Dependent Role="Interventie">
+              <PropertyRef Name="id_masina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masina_ToClient">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Masina" Type="Self.Masina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_client" />
+            </Principal>
+            <Dependent Role="Masina">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masina_ToMarca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Masina" Type="Self.Masina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="Masina">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masina_ToModel">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="Masina" Type="Self.Masina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="id_model" />
+            </Principal>
+            <Dependent Role="Masina">
+              <PropertyRef Name="id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_ToMarca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AplicatieServiceAutoModelStoreContainer">
+          <EntitySet Name="Angajat" EntityType="Self.Angajat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interventie" EntityType="Self.Interventie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interventie_Serviciu" EntityType="Self.Interventie_Serviciu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Masina" EntityType="Self.Masina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Serviciu" EntityType="Self.Serviciu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Interventie_Serviciu_ToAngajat" Association="Self.FK_Interventie_Serviciu_ToAngajat">
+            <End Role="Angajat" EntitySet="Angajat" />
+            <End Role="Interventie_Serviciu" EntitySet="Interventie_Serviciu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interventie_Serviciu_ToInterventie" Association="Self.FK_Interventie_Serviciu_ToInterventie">
+            <End Role="Interventie" EntitySet="Interventie" />
+            <End Role="Interventie_Serviciu" EntitySet="Interventie_Serviciu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interventie_Serviciu_ToServiciu" Association="Self.FK_Interventie_Serviciu_ToServiciu">
+            <End Role="Serviciu" EntitySet="Serviciu" />
+            <End Role="Interventie_Serviciu" EntitySet="Interventie_Serviciu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interventie_ToClient" Association="Self.FK_Interventie_ToClient">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Interventie" EntitySet="Interventie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interventie_ToMasina" Association="Self.FK_Interventie_ToMasina">
+            <End Role="Masina" EntitySet="Masina" />
+            <End Role="Interventie" EntitySet="Interventie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masina_ToClient" Association="Self.FK_Masina_ToClient">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Masina" EntitySet="Masina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masina_ToMarca" Association="Self.FK_Masina_ToMarca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Masina" EntitySet="Masina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masina_ToModel" Association="Self.FK_Masina_ToModel">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Masina" EntitySet="Masina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_ToMarca" Association="Self.FK_Model_ToMarca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AplicatieServiceAutoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Angajat">
+          <Key>
+            <PropertyRef Name="id_angajat" />
+          </Key>
+          <Property Name="id_angajat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CNP" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="serieCI" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="numarCI" Type="Int32" />
+          <Property Name="data_nasterii" Type="DateTime" Precision="3" />
+          <Property Name="data_angajare" Type="DateTime" Precision="3" />
+          <Property Name="adresa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="salariu" Type="Double" />
+          <NavigationProperty Name="Interventie_Serviciu" Relationship="Self.FK_Interventie_Serviciu_ToAngajat" FromRole="Angajat" ToRole="Interventie_Serviciu" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id_client" />
+          </Key>
+          <Property Name="id_client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CNP" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="serieCI" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="numarCI" Type="Int32" />
+          <Property Name="data_nasterii" Type="DateTime" Precision="3" />
+          <Property Name="adresa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Interventie" Relationship="Self.FK_Interventie_ToClient" FromRole="Client" ToRole="Interventie" />
+          <NavigationProperty Name="Masina" Relationship="Self.FK_Masina_ToClient" FromRole="Client" ToRole="Masina" />
+        </EntityType>
+        <EntityType Name="Interventie">
+          <Key>
+            <PropertyRef Name="id_interventie" />
+          </Key>
+          <Property Name="id_interventie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_client" Type="Int32" />
+          <Property Name="id_masina" Type="Int32" />
+          <Property Name="data_primire" Type="DateTime" Precision="3" />
+          <Property Name="data_finalizare" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Interventie_ToClient" FromRole="Interventie" ToRole="Client" />
+          <NavigationProperty Name="Interventie_Serviciu" Relationship="Self.FK_Interventie_Serviciu_ToInterventie" FromRole="Interventie" ToRole="Interventie_Serviciu" />
+          <NavigationProperty Name="Masina" Relationship="Self.FK_Interventie_ToMasina" FromRole="Interventie" ToRole="Masina" />
+        </EntityType>
+        <EntityType Name="Interventie_Serviciu">
+          <Key>
+            <PropertyRef Name="id_int_serv" />
+          </Key>
+          <Property Name="id_int_serv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_interventie" Type="Int32" />
+          <Property Name="id_serviciu" Type="Int32" />
+          <Property Name="id_angajat" Type="Int32" />
+          <Property Name="pret" Type="Double" />
+          <NavigationProperty Name="Angajat" Relationship="Self.FK_Interventie_Serviciu_ToAngajat" FromRole="Interventie_Serviciu" ToRole="Angajat" />
+          <NavigationProperty Name="Interventie" Relationship="Self.FK_Interventie_Serviciu_ToInterventie" FromRole="Interventie_Serviciu" ToRole="Interventie" />
+          <NavigationProperty Name="Serviciu" Relationship="Self.FK_Interventie_Serviciu_ToServiciu" FromRole="Interventie_Serviciu" ToRole="Serviciu" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="id_marca" />
+          </Key>
+          <Property Name="id_marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Masina" Relationship="Self.FK_Masina_ToMarca" FromRole="Marca" ToRole="Masina" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Model_ToMarca" FromRole="Marca" ToRole="Model" />
+        </EntityType>
+        <EntityType Name="Masina">
+          <Key>
+            <PropertyRef Name="id_masina" />
+          </Key>
+          <Property Name="id_masina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_client" Type="Int32" />
+          <Property Name="serie_sasiu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="nr_inmatriculare" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="id_marca" Type="Int32" />
+          <Property Name="id_model" Type="Int32" />
+          <Property Name="rulaj" Type="Int32" />
+          <Property Name="an_fabricatie" Type="Int32" />
+          <Property Name="motorizare" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Masina_ToClient" FromRole="Masina" ToRole="Client" />
+          <NavigationProperty Name="Interventie" Relationship="Self.FK_Interventie_ToMasina" FromRole="Masina" ToRole="Interventie" />
+          <NavigationProperty Name="Marca" Relationship="Self.FK_Masina_ToMarca" FromRole="Masina" ToRole="Marca" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Masina_ToModel" FromRole="Masina" ToRole="Model" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="id_model" />
+          </Key>
+          <Property Name="id_model" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_marca" Type="Int32" />
+          <NavigationProperty Name="Marca" Relationship="Self.FK_Model_ToMarca" FromRole="Model" ToRole="Marca" />
+          <NavigationProperty Name="Masina" Relationship="Self.FK_Masina_ToModel" FromRole="Model" ToRole="Masina" />
+        </EntityType>
+        <EntityType Name="Serviciu">
+          <Key>
+            <PropertyRef Name="id_serviciu" />
+          </Key>
+          <Property Name="id_serviciu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descriere" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="durata_medie" Type="Double" />
+          <NavigationProperty Name="Interventie_Serviciu" Relationship="Self.FK_Interventie_Serviciu_ToServiciu" FromRole="Serviciu" ToRole="Interventie_Serviciu" />
+        </EntityType>
+        <Association Name="FK_Interventie_Serviciu_ToAngajat">
+          <End Role="Angajat" Type="Self.Angajat" Multiplicity="0..1" />
+          <End Role="Interventie_Serviciu" Type="Self.Interventie_Serviciu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Angajat">
+              <PropertyRef Name="id_angajat" />
+            </Principal>
+            <Dependent Role="Interventie_Serviciu">
+              <PropertyRef Name="id_angajat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interventie_ToClient">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Interventie" Type="Self.Interventie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_client" />
+            </Principal>
+            <Dependent Role="Interventie">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masina_ToClient">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Masina" Type="Self.Masina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_client" />
+            </Principal>
+            <Dependent Role="Masina">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interventie_Serviciu_ToInterventie">
+          <End Role="Interventie" Type="Self.Interventie" Multiplicity="0..1" />
+          <End Role="Interventie_Serviciu" Type="Self.Interventie_Serviciu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Interventie">
+              <PropertyRef Name="id_interventie" />
+            </Principal>
+            <Dependent Role="Interventie_Serviciu">
+              <PropertyRef Name="id_interventie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interventie_ToMasina">
+          <End Role="Masina" Type="Self.Masina" Multiplicity="0..1" />
+          <End Role="Interventie" Type="Self.Interventie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masina">
+              <PropertyRef Name="id_masina" />
+            </Principal>
+            <Dependent Role="Interventie">
+              <PropertyRef Name="id_masina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interventie_Serviciu_ToServiciu">
+          <End Role="Serviciu" Type="Self.Serviciu" Multiplicity="0..1" />
+          <End Role="Interventie_Serviciu" Type="Self.Interventie_Serviciu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Serviciu">
+              <PropertyRef Name="id_serviciu" />
+            </Principal>
+            <Dependent Role="Interventie_Serviciu">
+              <PropertyRef Name="id_serviciu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masina_ToMarca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Masina" Type="Self.Masina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="Masina">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_ToMarca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masina_ToModel">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="Masina" Type="Self.Masina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="id_model" />
+            </Principal>
+            <Dependent Role="Masina">
+              <PropertyRef Name="id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AplicatieServiceAutoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Angajat" EntityType="Self.Angajat" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Interventie" EntityType="Self.Interventie" />
+          <EntitySet Name="Interventie_Serviciu" EntityType="Self.Interventie_Serviciu" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" />
+          <EntitySet Name="Masina" EntityType="Self.Masina" />
+          <EntitySet Name="Model" EntityType="Self.Model" />
+          <EntitySet Name="Serviciu" EntityType="Self.Serviciu" />
+          <AssociationSet Name="FK_Interventie_Serviciu_ToAngajat" Association="Self.FK_Interventie_Serviciu_ToAngajat">
+            <End Role="Angajat" EntitySet="Angajat" />
+            <End Role="Interventie_Serviciu" EntitySet="Interventie_Serviciu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interventie_ToClient" Association="Self.FK_Interventie_ToClient">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Interventie" EntitySet="Interventie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masina_ToClient" Association="Self.FK_Masina_ToClient">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Masina" EntitySet="Masina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interventie_Serviciu_ToInterventie" Association="Self.FK_Interventie_Serviciu_ToInterventie">
+            <End Role="Interventie" EntitySet="Interventie" />
+            <End Role="Interventie_Serviciu" EntitySet="Interventie_Serviciu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interventie_ToMasina" Association="Self.FK_Interventie_ToMasina">
+            <End Role="Masina" EntitySet="Masina" />
+            <End Role="Interventie" EntitySet="Interventie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interventie_Serviciu_ToServiciu" Association="Self.FK_Interventie_Serviciu_ToServiciu">
+            <End Role="Serviciu" EntitySet="Serviciu" />
+            <End Role="Interventie_Serviciu" EntitySet="Interventie_Serviciu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masina_ToMarca" Association="Self.FK_Masina_ToMarca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Masina" EntitySet="Masina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_ToMarca" Association="Self.FK_Model_ToMarca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masina_ToModel" Association="Self.FK_Masina_ToModel">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Masina" EntitySet="Masina" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AplicatieServiceAutoModelStoreContainer" CdmEntityContainer="AplicatieServiceAutoEntities">
+          <EntitySetMapping Name="Angajat">
+            <EntityTypeMapping TypeName="AplicatieServiceAutoModel.Angajat">
+              <MappingFragment StoreEntitySet="Angajat">
+                <ScalarProperty Name="id_angajat" ColumnName="id_angajat" />
+                <ScalarProperty Name="nume" ColumnName="nume" />
+                <ScalarProperty Name="CNP" ColumnName="CNP" />
+                <ScalarProperty Name="serieCI" ColumnName="serieCI" />
+                <ScalarProperty Name="numarCI" ColumnName="numarCI" />
+                <ScalarProperty Name="data_nasterii" ColumnName="data_nasterii" />
+                <ScalarProperty Name="data_angajare" ColumnName="data_angajare" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="salariu" ColumnName="salariu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="AplicatieServiceAutoModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="nume" ColumnName="nume" />
+                <ScalarProperty Name="CNP" ColumnName="CNP" />
+                <ScalarProperty Name="serieCI" ColumnName="serieCI" />
+                <ScalarProperty Name="numarCI" ColumnName="numarCI" />
+                <ScalarProperty Name="data_nasterii" ColumnName="data_nasterii" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interventie">
+            <EntityTypeMapping TypeName="AplicatieServiceAutoModel.Interventie">
+              <MappingFragment StoreEntitySet="Interventie">
+                <ScalarProperty Name="id_interventie" ColumnName="id_interventie" />
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="id_masina" ColumnName="id_masina" />
+                <ScalarProperty Name="data_primire" ColumnName="data_primire" />
+                <ScalarProperty Name="data_finalizare" ColumnName="data_finalizare" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interventie_Serviciu">
+            <EntityTypeMapping TypeName="AplicatieServiceAutoModel.Interventie_Serviciu">
+              <MappingFragment StoreEntitySet="Interventie_Serviciu">
+                <ScalarProperty Name="id_int_serv" ColumnName="id_int_serv" />
+                <ScalarProperty Name="id_interventie" ColumnName="id_interventie" />
+                <ScalarProperty Name="id_serviciu" ColumnName="id_serviciu" />
+                <ScalarProperty Name="id_angajat" ColumnName="id_angajat" />
+                <ScalarProperty Name="pret" ColumnName="pret" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="AplicatieServiceAutoModel.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="denumire" ColumnName="denumire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Masina">
+            <EntityTypeMapping TypeName="AplicatieServiceAutoModel.Masina">
+              <MappingFragment StoreEntitySet="Masina">
+                <ScalarProperty Name="id_masina" ColumnName="id_masina" />
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="serie_sasiu" ColumnName="serie_sasiu" />
+                <ScalarProperty Name="nr_inmatriculare" ColumnName="nr_inmatriculare" />
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="id_model" ColumnName="id_model" />
+                <ScalarProperty Name="rulaj" ColumnName="rulaj" />
+                <ScalarProperty Name="an_fabricatie" ColumnName="an_fabricatie" />
+                <ScalarProperty Name="motorizare" ColumnName="motorizare" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Model">
+            <EntityTypeMapping TypeName="AplicatieServiceAutoModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="id_model" ColumnName="id_model" />
+                <ScalarProperty Name="denumire" ColumnName="denumire" />
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Serviciu">
+            <EntityTypeMapping TypeName="AplicatieServiceAutoModel.Serviciu">
+              <MappingFragment StoreEntitySet="Serviciu">
+                <ScalarProperty Name="id_serviciu" ColumnName="id_serviciu" />
+                <ScalarProperty Name="denumire" ColumnName="denumire" />
+                <ScalarProperty Name="descriere" ColumnName="descriere" />
+                <ScalarProperty Name="durata_medie" ColumnName="durata_medie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

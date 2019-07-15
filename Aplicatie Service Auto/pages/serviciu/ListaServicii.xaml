@@ -1,0 +1,28 @@
+﻿<Page x:Class="Aplicatie_Service_Auto.ListaServicii"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Aplicatie_Service_Auto"
+      mc:Ignorable="d"
+      Title="Listă servicii">
+    <Grid>
+        <ListView x:Name="lvServicii" Margin="0,35,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding id_serviciu}"/>
+                        <GridViewColumn Width="120" Header="Denumire" DisplayMemberBinding="{Binding denumire}"/>
+                        <GridViewColumn Header="Denumire" DisplayMemberBinding="{Binding descriere}"/>
+                        <GridViewColumn Header="Durata medie" DisplayMemberBinding="{Binding durata_medie}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal" Margin="0">
+            <Button x:Name="btnAdaugareServiciu" Content="Adaugă serviciu" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Padding="10,3" Click="btnAdaugareServiciu_Click"/>
+            <Button x:Name="btnModifica" Margin="0,0,10,0" Padding="10,3" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Modifică" Click="btnModifica_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

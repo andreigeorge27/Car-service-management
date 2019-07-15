@@ -1,0 +1,15 @@
+﻿<Application x:Class="Aplicatie_Service_Auto.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Aplicatie_Service_Auto"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <BitmapImage x:Key="icon-acasa.png" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="images\icon-acasa.png"/>
+        <BitmapImage x:Key="icon-angajati.png" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="images\icon-angajati.png"/>
+        <BitmapImage x:Key="icon-clienti.png" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="images\icon-clienti.png"/>
+        <BitmapImage x:Key="icon-interventii.png" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="images\icon-interventii.png"/>
+        <BitmapImage x:Key="icon-masina.png" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="images\icon-masina.png"/>
+        <BitmapImage x:Key="icon-nomenclatoare.png" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="images\icon-nomenclatoare.png"/>
+        <BitmapImage x:Key="icon-servicii.png" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="images\icon-servicii.png"/>
+    </Application.Resources>
+</Application>

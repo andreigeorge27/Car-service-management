@@ -1,0 +1,9 @@
+debug/
+release/
+publish/
+build/
+bin/
+obj/
+cache/
+log/
+tmp/

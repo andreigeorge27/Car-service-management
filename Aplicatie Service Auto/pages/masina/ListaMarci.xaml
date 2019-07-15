@@ -1,0 +1,26 @@
+﻿<Page x:Class="Aplicatie_Service_Auto.ListaMarci"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Aplicatie_Service_Auto"
+      mc:Ignorable="d"
+      Title="Listă mărci">
+    <Grid>
+        <ListView x:Name="lvMarci" Margin="0,35,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding id_marca}"/>
+                        <GridViewColumn Width="120" Header="Denumire" DisplayMemberBinding="{Binding denumire}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal" Margin="0">
+            <Button x:Name="btnAdaugareMarca" Content="Adaugă marcă" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Padding="10,3" Click="btnAdaugareMarca_Click"/>
+            <Button x:Name="btnModifica" Margin="0,0,10,0" Padding="10,3" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Modifică" Click="btnModifica_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
