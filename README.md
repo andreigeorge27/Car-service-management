@@ -10,7 +10,7 @@ This application was created for didactic purposes, the main role is to ease adm
   You need Visual Studio. After clone or download this repository open aplication with Visual Studio and run.
 # Screenshots
   <strong>Data base structure</strong><br><br>
-  ![screenshot](https://raw.githubusercontent.com/andreigeorge27/Images/DataBase.PNG)<br><br>
+  ![screenshot](https://raw.githubusercontent.com/andreigeorge27/Images/DataBase.png)<br><br>
   <strong>Statistics page </strong> - on this page are displayed relevant data about the activity of this service<br><br>
   ![screenshot](https://raw.githubusercontent.com/andreigeorge27/Images/StatisticsPage.PNG)<br><br>
   <strong>Customers list page </strong> 	
